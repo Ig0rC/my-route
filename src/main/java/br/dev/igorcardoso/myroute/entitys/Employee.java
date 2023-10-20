@@ -8,9 +8,8 @@ import br.dev.igorcardoso.myroute.useCases.employeeUseCase.DTOs.CreateEmployeeDT
 
 import java.util.UUID;
 
-@Data
 @Entity(name = "employees")
-@Table(name = "employees")
+@Data
 public class Employee {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -37,4 +36,5 @@ public class Employee {
         this.registration = employeeDTO.registration();
         this.lotNumber = employeeDTO.lotNumber();
     }
+
 }
