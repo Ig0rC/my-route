@@ -2,7 +2,6 @@ package br.dev.igorcardoso.myroute.entitys;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.UUID;
 
@@ -19,5 +18,6 @@ public class Car {
     @Column(nullable = false)
     private String model;
     @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 }
