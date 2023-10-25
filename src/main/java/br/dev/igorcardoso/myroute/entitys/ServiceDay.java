@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.time.LocalDateTime;
+import br.dev.igorcardoso.myroute.useCases.serviceDayUseCase.DTOs.CreateServiceDayDTO;
+
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity(name = "services_day")
@@ -15,9 +17,7 @@ public class ServiceDay {
     @GeneratedValue(generator = "UUID")
     private UUID id;
     @Column(name = "service_date", nullable = false)
-    private LocalDateTime serviceDate;
-    @Column(name = "description_service", nullable = false)
-    private String descriptionService;
+    private LocalDate serviceDate;
     @Column(name = "departure_time", nullable = false, length = 5)
     private String departureTime;
     @Column(name = "arrival_time", nullable = false, length = 5)
@@ -26,10 +26,18 @@ public class ServiceDay {
     private Integer departureOdometer;
     @Column(name = "arrival_odometer", nullable = false)
     private Integer arrivalOdometer;
-    @ManyToOne
-    @JoinColumn(name = "service_month_id", nullable = false)
-    private ServiceMonth serviceMonth;
+    @Column(name = "service_month_id", nullable = false)
+    private UUID serviceMonthId;
     @Column(name = "created_at")
     @CreationTimestamp
     private String createdAt;
+
+    public ServiceDay(CreateServiceDayDTO createServiceDayDTO) {
+        this.arrivalOdometer = createServiceDayDTO.arrivalOdometer();
+        this.departureOdometer = createServiceDayDTO.departureOdometer();
+        this.arrivalTime = createServiceDayDTO.arrivalTime();
+        this.departureTime = createServiceDayDTO.departureTime();
+        this.serviceMonthId = createServiceDayDTO.serviceMonthId();
+        this.serviceDate = createServiceDayDTO.serviceDate();
+    }
 }
