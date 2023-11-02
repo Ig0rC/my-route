@@ -2,16 +2,22 @@ package br.dev.igorcardoso.myroute.entitys;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import br.dev.igorcardoso.myroute.useCases.serviceDayUseCase.DTOs.CreateServiceDayDTO;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity(name = "services_day")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ServiceDay {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -30,7 +36,7 @@ public class ServiceDay {
     private UUID serviceMonthId;
     @Column(name = "created_at")
     @CreationTimestamp
-    private String createdAt;
+    private LocalDateTime createdAt;
 
     public ServiceDay(CreateServiceDayDTO createServiceDayDTO) {
         this.arrivalOdometer = createServiceDayDTO.arrivalOdometer();
