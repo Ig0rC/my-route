@@ -20,8 +20,7 @@ public class ServiceDayController {
     private CreateServiceDayUseCase createServiceDayUseCase;
 
     @PostMapping
-    public ResponseEntity create(@RequestBody @Valid CreateServiceDayDTO body) {
-        System.out.println(body);
+    public ResponseEntity create(@RequestBody @Valid CreateServiceDayDTO body) throws Exception {
         this.createServiceDayUseCase.execute(body);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
