@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.dev.igorcardoso.myroute.entitys.User;
+import br.dev.igorcardoso.myroute.repositories.IUserRepository;
 
 @Service
 public class ListUserUseCase {
