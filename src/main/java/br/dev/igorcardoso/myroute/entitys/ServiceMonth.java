@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import br.dev.igorcardoso.myroute.useCases.serviceMonthUseCase.DTOs.CreateServiceMonthDTO;
-import java.util.Date;
+
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity(name = "services_month")
@@ -19,7 +20,7 @@ public class ServiceMonth {
     private UUID id;
 
     @Column(name = "date_month", nullable = false)
-    private Date dateMonth;
+    private LocalDate dateMonth;
 
     // @ManyToOne
     @Column(name = "car_id")
