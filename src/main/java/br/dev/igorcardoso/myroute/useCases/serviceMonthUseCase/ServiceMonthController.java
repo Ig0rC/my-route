@@ -13,11 +13,11 @@ import jakarta.validation.Valid;
 @RequestMapping("/services-month")
 public class ServiceMonthController {
 
-    @Autowired
-    CreateServiceMonthUseCase createServiceMonthUseCase;
-    
-    @PostMapping
-    public void create(@RequestBody @Valid CreateServiceMonthDTO body) {
-        this.createServiceMonthUseCase.execute(body);
-    }
+  @Autowired
+  CreateServiceMonthUseCase createServiceMonthUseCase;
+
+  @PostMapping
+  public void create(@RequestBody @Valid CreateServiceMonthDTO body) {
+    this.createServiceMonthUseCase.execute(body);
+  }
 }
