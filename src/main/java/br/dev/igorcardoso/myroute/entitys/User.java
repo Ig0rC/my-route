@@ -28,13 +28,12 @@ public class User {
     @Column(nullable = false, length = 180)
     private String password;
 
-
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     public User(CreateUserDTO user) {
-        this.email =  user.email();
+        this.email = user.email();
         this.password = user.password();
     }
 }
