@@ -8,6 +8,7 @@ import br.dev.igorcardoso.myroute.entitys.User;
 import br.dev.igorcardoso.myroute.repositories.IEmployeeRepository;
 import br.dev.igorcardoso.myroute.repositories.IUserRepository;
 import br.dev.igorcardoso.myroute.useCases.userUseCase.DTOs.CreateUserDTO;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -17,6 +18,8 @@ public class CreateUserUseCase {
   private IUserRepository userRepository;
   @Autowired
   IEmployeeRepository employeeRepository;
+  @Autowired
+  PasswordEncoder passwordEncoder;
 
   @Transactional
   public void execute(CreateUserDTO userDTO) throws Exception {
@@ -28,13 +31,15 @@ public class CreateUserUseCase {
 
     User user = new User(userDTO);
 
+    String passwordHashred = passwordEncoder.encode(user.getPassword());
+
+    user.setPassword(passwordHashred);
+
     User createdUser = this.userRepository.save(user);
 
     Employee employee = new Employee(userDTO.employee());
 
     employee.setUser(createdUser);
-
-    System.out.println(employee);
 
     this.employeeRepository.save(employee);
   }
