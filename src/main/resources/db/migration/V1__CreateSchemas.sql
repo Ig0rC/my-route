@@ -31,15 +31,15 @@ CREATE TABLE services_month (
   id UUID PRIMARY KEY,
   date_month DATE NOT NULL,
   car_id UUID NOT NULL,
+  user_id UUID NOT NULL,
   created_at TIMESTAMP NOT NULL,
-
-  FOREIGN KEY (car_id) REFERENCES cars(id)
+  FOREIGN KEY (car_id) REFERENCES cars(id),
+  FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE services_day (
   id UUID PRIMARY KEY,
   service_date TIMESTAMP NOT NULL,
-  description_service TEXT,
   departure_time VARCHAR(5) NOT NULL,
   arrival_time VARCHAR(5) NOT NULL,
   departure_odometer INT NOT NULL,
@@ -48,3 +48,14 @@ CREATE TABLE services_day (
   created_at TIMESTAMP NOT NULL,
   FOREIGN KEY (service_month_id) REFERENCES services_month(id)
 );
+
+
+CREATE TABLE description_services (
+  id UUID PRIMARY KEY,
+  description TEXT,
+  order_number INT,
+  service_day_id UUID NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  FOREIGN KEY (service_day_id) REFERENCES services_day(id)
+);
+

@@ -2,11 +2,19 @@ package br.dev.igorcardoso.myroute.errors;
 
 import java.util.List;
 
+import javax.naming.AuthenticationException;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.auth0.jwt.exceptions.JWTDecodeException;
 
 import br.dev.igorcardoso.myroute.errors.DTOs.ExpectionDTO;
 import br.dev.igorcardoso.myroute.errors.DTOs.MethodArgumentNotValidExceptionDTO;
@@ -32,11 +40,8 @@ public class ExpectionHandlerController {
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<
-    List<MethodArgumentNotValidExceptionDTO>
-  > handleMethodAgumentNotValidException(
-    MethodArgumentNotValidException error
-  ) {
+  public ResponseEntity<List<MethodArgumentNotValidExceptionDTO>> handleMethodAgumentNotValidException(
+      MethodArgumentNotValidException error) {
     List<FieldError> fieldErrors = error.getFieldErrors();
 
     var body = fieldErrors.stream().map(MethodArgumentNotValidExceptionDTO::new).toList();
@@ -45,4 +50,30 @@ public class ExpectionHandlerController {
         .badRequest()
         .body(body);
   }
+
+  @ExceptionHandler(BadCredentialsException.class)
+  public ResponseEntity handleBadCredentialsException() {
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+  }
+
+  @ExceptionHandler(HttpMessageNotReadableException.class)
+  public ResponseEntity handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+    return ResponseEntity.badRequest().body(ex.getMessage());
+  }
+
+  @ExceptionHandler(AuthenticationException.class)
+  public ResponseEntity handleAuthenticationException() {
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Falha na autenticação");
+  }
+
+  @ExceptionHandler(AccessDeniedException.class)
+  public ResponseEntity handleAccessDeniedException() {
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado");
+  }
+
+  @ExceptionHandler(JWTDecodeException.class)
+  public ResponseEntity handleJWTDecodeException() {
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Token inválido");
+  }
+
 }
