@@ -34,6 +34,7 @@ class FilterAuthentication extends OncePerRequestFilter {
       filterChain.doFilter(request, response);
     } else {
       var authorization = request.getHeader("Authorization");
+      System.out.println(authorization);
 
       if (authorization == null) {
         throw new RuntimeException("Não autorizado!");
@@ -61,8 +62,10 @@ class FilterAuthentication extends OncePerRequestFilter {
 
       SecurityContextHolder.getContext().setAuthentication(authenticationUser);
 
+      // var userId = (UUID) verifiedToken.getClaim("id").asString();
+
       request.setAttribute("email", email);
-      request.setAttribute("userId", verifiedToken.getClaim("id"));
+      request.setAttribute("userId", verifiedToken.getClaim("id").asString());
 
       filterChain.doFilter(request, response);
     }

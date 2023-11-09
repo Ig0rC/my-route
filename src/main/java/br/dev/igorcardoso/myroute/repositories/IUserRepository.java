@@ -10,5 +10,7 @@ import br.dev.igorcardoso.myroute.entitys.User;
 public interface IUserRepository extends JpaRepository<User, UUID> {
   User findByEmail(String email);
 
+  User findOneById(UUID id);
+
   UserDetails findOneByEmail(String username);
 }

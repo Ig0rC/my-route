@@ -21,7 +21,6 @@ public class TokenService {
     try {
       System.out.println(keyScret);
       var algorithms = Algorithm.HMAC256(keyScret);
-
       return JWT.create()
           .withIssuer("API MyRoute")
           .withClaim("email", user.getEmail())

@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.dev.igorcardoso.myroute.entitys.Employee;
 
 public interface IEmployeeRepository extends JpaRepository<Employee, UUID> {
-
+  Employee findOneByUserId(UUID userId);
 }
