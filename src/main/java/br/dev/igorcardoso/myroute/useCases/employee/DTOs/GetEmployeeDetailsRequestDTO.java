@@ -1,4 +1,4 @@
-package br.dev.igorcardoso.myroute.useCases.employeeUseCase.DTOs;
+package br.dev.igorcardoso.myroute.useCases.employee.DTOs;
 
 import java.util.UUID;
 

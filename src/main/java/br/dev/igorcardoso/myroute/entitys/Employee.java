@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import br.dev.igorcardoso.myroute.useCases.employeeUseCase.DTOs.CreateEmployeeDTO;
+import br.dev.igorcardoso.myroute.useCases.employee.DTOs.CreateEmployeeDTO;
+import br.dev.igorcardoso.myroute.useCases.employee.DTOs.UpdateEmployeeRequestDTO;
 
 import java.util.UUID;
 
@@ -41,6 +42,13 @@ public class Employee {
     this.position = employeeDTO.position();
     this.registration = employeeDTO.registration();
     this.lotNumber = employeeDTO.lotNumber();
+  }
+
+  public Employee(UpdateEmployeeRequestDTO updateEmployeeDTO) {
+    this.fullName = updateEmployeeDTO.fullName();
+    this.position = updateEmployeeDTO.position();
+    this.registration = updateEmployeeDTO.registration();
+    this.lotNumber = updateEmployeeDTO.lotNumber();
   }
 
 }

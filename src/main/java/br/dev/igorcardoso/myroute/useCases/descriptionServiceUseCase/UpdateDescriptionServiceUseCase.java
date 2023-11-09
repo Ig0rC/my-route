@@ -21,14 +21,8 @@ public class UpdateDescriptionServiceUseCase {
     if (descriptionService == null) {
       throw new Exception("Descrição não existe!");
     }
-    System.out.println("ANTES");
-    System.out.println(data);
-    System.out.println(descriptionService);
-    System.out.println("DEPOIS");
 
     NonNullPropertyCopier.copyNonNullProperties(data, descriptionService);
-    System.out.println("DEPOIS");
-    System.out.println(descriptionService);
 
     DescriptionService descriptionServiceUpdated = this.descriptionServiceRepository.save(descriptionService);
 

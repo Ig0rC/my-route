@@ -1,11 +1,12 @@
-package br.dev.igorcardoso.myroute.useCases.employeeUseCase;
+package br.dev.igorcardoso.myroute.useCases.employee;
 
 import org.springframework.stereotype.Service;
 
 import br.dev.igorcardoso.myroute.entitys.Employee;
 import br.dev.igorcardoso.myroute.repositories.IEmployeeRepository;
-import br.dev.igorcardoso.myroute.useCases.employeeUseCase.DTOs.GetEmployeeDetailsRequestDTO;
-import br.dev.igorcardoso.myroute.useCases.employeeUseCase.DTOs.GetEmployeeDetailsResponseDTO;
+import br.dev.igorcardoso.myroute.useCases.employee.DTOs.GetEmployeeDetailsRequestDTO;
+import br.dev.igorcardoso.myroute.useCases.employee.DTOs.GetEmployeeDetailsResponseDTO;
+import jakarta.validation.Valid;
 
 @Service
 public class GetEmployeeDetailsUseCase {
@@ -16,7 +17,7 @@ public class GetEmployeeDetailsUseCase {
     this.employeeRepository = employeeRepository;
   }
 
-public GetEmployeeDetailsResponseDTO execute(GetEmployeeDetailsRequestDTO GetEmployeeDetailsDTO) {
+  public GetEmployeeDetailsResponseDTO execute(@Valid GetEmployeeDetailsRequestDTO GetEmployeeDetailsDTO) {
     Employee employee = this.employeeRepository.findOneByUserId(GetEmployeeDetailsDTO.id());
 
     return new GetEmployeeDetailsResponseDTO(employee);
