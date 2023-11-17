@@ -2,6 +2,7 @@ package br.dev.igorcardoso.myroute.entitys;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
@@ -11,6 +12,7 @@ import br.dev.igorcardoso.myroute.useCases.carUseCase.DTOs.CreateCarRequestDTO;
 
 @Entity(name = "cars")
 @Data
+@NoArgsConstructor
 public class Car {
   @Id
   @GeneratedValue(generator = "UUID")

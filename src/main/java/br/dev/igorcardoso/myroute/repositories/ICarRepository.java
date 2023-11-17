@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.dev.igorcardoso.myroute.entitys.Car;
 
 public interface ICarRepository extends JpaRepository<Car, UUID> {
-
+  Car[] findAllByUserId(UUID userId);
 }
