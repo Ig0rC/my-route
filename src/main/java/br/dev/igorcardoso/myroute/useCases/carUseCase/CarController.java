@@ -2,12 +2,14 @@ package br.dev.igorcardoso.myroute.useCases.carUseCase;
 
 import java.util.UUID;
 
+import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,7 @@ import br.dev.igorcardoso.myroute.entitys.Car;
 import br.dev.igorcardoso.myroute.useCases.carUseCase.DTOs.CreateCarRequestDTO;
 import br.dev.igorcardoso.myroute.useCases.carUseCase.DTOs.GetCarDetailsRequestDTO;
 import br.dev.igorcardoso.myroute.useCases.carUseCase.DTOs.ListCarsRequestDTO;
+import br.dev.igorcardoso.myroute.useCases.carUseCase.DTOs.UpdateCarRequestDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
@@ -29,6 +32,8 @@ public class CarController {
   private ListCarsUseCase listCarsUseCase;
   @Autowired
   private GetCarDetailsUseCase getCarDetailsUseCase;
+  @Autowired
+  UpdateCarUseCase updateCarUseCase;
 
   @PostMapping("/")
   public ResponseEntity create(HttpServletRequest request, @RequestBody @Valid CreateCarRequestDTO createCarDTO) {
@@ -63,5 +68,12 @@ public class CarController {
     Car car = this.getCarDetailsUseCase.execute(getCarDetailsDTO);
 
     return ResponseEntity.ok(car);
+  }
+
+  @PutMapping("/")
+  public ResponseEntity update(@RequestBody @Valid UpdateCarRequestDTO updateCarRequestDTO) {
+    this.updateCarUseCase.execute(updateCarRequestDTO);
+
+    return ResponseEntity.ok("Atualizado com sucesso!");
   }
 }
