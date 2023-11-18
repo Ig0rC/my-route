@@ -1,7 +1,7 @@
-package br.dev.igorcardoso.myroute.useCases.userUseCase;
+package br.dev.igorcardoso.myroute.useCases.user;
 
 import br.dev.igorcardoso.myroute.entitys.User;
-import br.dev.igorcardoso.myroute.useCases.userUseCase.DTOs.CreateUserDTO;
+import br.dev.igorcardoso.myroute.useCases.user.DTOs.CreateUserDTO;
 import jakarta.validation.Valid;
 import java.util.List;
 

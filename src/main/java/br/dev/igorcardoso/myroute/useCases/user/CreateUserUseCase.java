@@ -1,4 +1,4 @@
-package br.dev.igorcardoso.myroute.useCases.userUseCase;
+package br.dev.igorcardoso.myroute.useCases.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,8 @@ import br.dev.igorcardoso.myroute.entitys.Employee;
 import br.dev.igorcardoso.myroute.entitys.User;
 import br.dev.igorcardoso.myroute.repositories.IEmployeeRepository;
 import br.dev.igorcardoso.myroute.repositories.IUserRepository;
-import br.dev.igorcardoso.myroute.useCases.userUseCase.DTOs.CreateUserDTO;
+import br.dev.igorcardoso.myroute.useCases.user.DTOs.CreateUserDTO;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import jakarta.transaction.Transactional;
 

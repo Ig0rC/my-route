@@ -10,7 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import br.dev.igorcardoso.myroute.useCases.userUseCase.DTOs.CreateUserDTO;
+import br.dev.igorcardoso.myroute.useCases.user.DTOs.CreateUserDTO;
 
 import java.time.LocalDateTime;
 import java.util.Collection;

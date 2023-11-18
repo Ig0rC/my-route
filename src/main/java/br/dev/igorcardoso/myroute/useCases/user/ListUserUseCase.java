@@ -1,4 +1,4 @@
-package br.dev.igorcardoso.myroute.useCases.userUseCase;
+package br.dev.igorcardoso.myroute.useCases.user;
 
 import java.util.List;
 

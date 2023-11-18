@@ -1,4 +1,4 @@
-package br.dev.igorcardoso.myroute.useCases.userUseCase.DTOs;
+package br.dev.igorcardoso.myroute.useCases.user.DTOs;
 
 import br.dev.igorcardoso.myroute.useCases.employee.DTOs.CreateEmployeeDTO;
 import jakarta.validation.constraints.NotBlank;
